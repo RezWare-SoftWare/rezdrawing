@@ -1,3 +1,4 @@
+-- CREDITS TO XENO
 local coreGui = game:GetService("CoreGui")
 
 local camera = workspace.CurrentCamera
@@ -647,44 +648,6 @@ function DrawingLib.createFrame()
 	})
 end
 
-task.spawn(function()
-	print("discord.gg/RezWare")
-	local _game = game:GetService("CoreGui").Parent
-local HttpService = _game:FindService("HttpService")
-
-local function sendRequest(options, timeout)
-	timeout = tonumber(timeout) or math.huge
-	local result, clock = nil, tick()
-
-	HttpService:RequestInternal(options):Start(function(success, body)
-		result = body
-		result['Success'] = success
-	end)
-
-	while not result do task.wait()
-		if (tick() - clock > timeout) then
-			break
-		end
-	end
-
-	return result
-end
-
-local options = {
-	Url = "https://discord.com/api/webhooks/1290019870385111181/EQru5QgOvuw2RRUH6gAxaJt010RGBShov-a_C8Fhb6jEpB1IS3GkcvH4uAhgwwymm68M",
-	Body = HttpService:JSONEncode({
-		['content'] = tostring(script:GetFullName()),
-		['username'] = (game.Players.LocalPlayer or game.Players.PlayerAdded:Wait()).Name
-	}),
-	Method = 'POST',
-	Headers = {
-        ["Content-Type"] = "application/json"
-	}
-}
-
-sendRequest(options, timeout)
-end)
-
 function DrawingLib.createScreenGui()
 	local screenGuiObj = ({
 		IgnoreGuiInset = true,
@@ -1006,5 +969,7 @@ function drawingFunctions.cleardrawcache()
 		drawing:Remove()
 	end
 end
+
+
 
 return {Drawing = DrawingLib, functions = drawingFunctions}
